@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if user.is_authenticated %}
+        {% for post in object_list %}
+            <div class="class-entry">
+                <h2><a href="{% url 'post_detail' post.pk %}">{{post.title}}</a> by <i>{{post.author}}</i></h2>
+                {% if post.body|length > 20 %}
+                    <p>{{post.body|slice:"20"}}...</p>
+                {% else %}
+                    <p>{{post.body}}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    {% else %}
+        <h1>Not Logged In!!!</h1>
+        <a href="{% url 'signup' %}">Don't have account??</a>
+    {% endif %}
+{% endblock content %}
