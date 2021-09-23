@@ -7,11 +7,15 @@
   </head>
   <body>
     <header>
-    <div class="nav-left">
+    <div class="heading">
       <h1><a href="{% url 'home' %}">Django blog</a></h1>
     </div>
     {% if request.user.is_authenticated %}
-    <div class="nav-right">
+    <div class="searching">
+      <input type="text" class="search" name="query"/>  
+      <button>Submit</button>
+    </div>
+    <div class="newpost">
       <a href="{% url 'post_new' %}">+ New Blog Post</a>
     </div>
     {% endif %}
@@ -20,9 +24,6 @@
     {% if request.user.is_authenticated %}
       <p>Hi {{user.username}}</p>
       <p><a href="{% url 'logout' %}">Log Out</a></p>
-    {% else %}
-    <p>You aren't logged in.</p>
-      <p><a href="{% url 'login' %}">Log In</a></p>
     {% endif %}
 
     <div>
